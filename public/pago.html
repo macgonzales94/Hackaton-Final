@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formPago">
+        <input type="text" id="card_number" placeholder="Número de Tarjeta" required>
+        <input type="text" id="cvv" placeholder="CVV" required>
+        <input type="text" id="expiration_month" placeholder="Mes de Expiración" required>
+        <input type="text" id="expiration_year" placeholder="Año de Expiración" required>
+        <input type="email" id="email" placeholder="Correo Electrónico" required>
+    
+        <h3>Dirección de Envío</h3>
+        <input type="text" id="calle" placeholder="Calle" required>
+        <input type="text" id="ciudad" placeholder="Ciudad" required>
+        <input type="text" id="distrito" placeholder="Distrito" required>
+        <input type="text" id="codigoPostal" placeholder="Código Postal" required>
+        <input type="text" id="telefono" placeholder="Teléfono" required>
+    
+        <button type="button" id="pagar">Realizar Pago</button>
+    </form>
+</body>
+<script src="./js/pago.js"></script>
+</html>
