@@ -1,17 +1,18 @@
 const nodemailer = require('nodemailer');
 
+
 // Crear el transportador de correo
 const transporter = nodemailer.createTransport({
-    service: 'gmail',  // Especificamos que usamos Gmail
+    service: 'gmail',  
     host: 'smtp.gmail.com',
     port: 587,
-    secure: false, // true para puerto 465, false para otros puertos
+    secure: false, 
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
     tls: {
-        rejectUnauthorized: false // Solo para desarrollo
+        rejectUnauthorized: false 
     }
 });
 
@@ -47,25 +48,38 @@ const emailService = {
     // Enviar confirmación de pedido
     enviarConfirmacionPedido: async (pedido, usuario) => {
         try {
-            await transporter.sendMail({
-                from: '"Bellisima Salon & Spa" <noreply@bellisima.com>',
-                to: usuario.email,
-                subject: `Confirmación de Pedido #${pedido._id}`,
-                html: `
-                    <h1>¡Gracias por tu pedido!</h1>
-                    <p>Tu pedido ha sido confirmado y está siendo procesado.</p>
-                    <h2>Detalles del pedido:</h2>
-                    <ul>
-                        ${pedido.productos.map(item => `
-                            <li>${item.producto.nombre} x ${item.cantidad}</li>
-                        `).join('')}
-                    </ul>
-                    <p>Total: S/. ${pedido.total}</p>
-                `
+            let transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: process.env.EMAIL_USER, 
+                    pass: process.env.EMAIL_PASS 
+                }
             });
-            console.log('Email de confirmación de pedido enviado');
+    
+            let mailOptions = {
+                from: process.env.EMAIL_USER,
+                to: usuario.email,
+                subject: "¡Gracias por tu compra en Bellisima Salon & Spa! 💖",
+                html: `
+                    <h2>¡Hola ${usuario.email}!</h2>
+                    <p>Gracias por tu compra. Tu pedido está en proceso y pronto te llegará una actualización.</p>
+                    <h3>Detalles de tu compra:</h3>
+                    <ul>
+                        ${pedido.productos.map(p => `<li>${p.nombre} - Cantidad: ${p.cantidad}</li>`).join("")}
+                    </ul>
+                    <p><strong>Total:</strong> S/. ${pedido.total.toFixed(2)}</p>
+                    <br>
+                    <p>Si tienes alguna consulta, no dudes en contactarnos.</p>
+                    <p>¡Esperamos verte pronto! 💄✨</p>
+                `
+            };
+    
+            let info = await transporter.sendMail(mailOptions);
+            console.log("Correo enviado con éxito:", info.response);
+            return { mensaje: "Correo enviado correctamente." };
         } catch (error) {
-            console.error('Error al enviar confirmación de pedido:', error);
+            console.error("Error al enviar el correo:", error);
+            return { mensaje: "Error al enviar el correo", error: error.message };
         }
     },
 

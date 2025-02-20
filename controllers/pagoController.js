@@ -2,6 +2,7 @@ const Culqi = require("culqi-node");
 const Pedido = require("../models/Pedido");
 const Carrito = require("../models/Carrito");
 const Usuario = require("../models/Usuario");
+const emailService = require("../services/emailService");
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const axios = require("axios");
 require("dotenv").config();
@@ -53,7 +54,17 @@ const generarToken = async (req, res) => {
 // Procesar el pago con `CULQI_PRIVATE_KEY`
 const procesarPago = async (req, res) => {
     try {
-        const { token, email, monto, direccionEnvio } = req.body;
+        const { token, email, monto, direccionEnvio, pedido } = req.body;
+
+        if (!pedido || !pedido.productos) {
+            return res.status(400).json({ mensaje: "Error: No se recibió información del pedido." });
+        }
+
+        console.log("Pedido recibido:", pedido); // Debug
+
+        if (!monto || monto <= 0) {
+            return res.status(400).json({ mensaje: "Error: Monto inválido." });
+        }
 
         const pagoResponse = await fetch("https://api.culqi.com/v2/charges", {
             method: "POST",
@@ -66,7 +77,7 @@ const procesarPago = async (req, res) => {
                 source_id: token,
                 email,
                 currency_code: "PEN",
-                capture: true, // Captura automática del pago
+                capture: true,
                 description: "Pago en Bellisima Salon & Spa",
                 metadata: {
                     cliente: email,
@@ -78,15 +89,29 @@ const procesarPago = async (req, res) => {
         const pagoData = await pagoResponse.json();
         console.log("Respuesta de Culqi:", pagoData);
 
-        if (!pagoData.id || pagoData.status !== "paid") {
-            return res.status(400).json({ mensaje: "Error en el pago con Culqi", error: pagoData });
+        // 🔹 Si la transacción es autorizada (AUT0000), considerar el pago exitoso
+        if (pagoData.outcome?.code === "AUT0000") {
+            return res.json({
+                mensaje: "Pago realizado con éxito",
+                pago: pagoData,
+                user_message: pagoData.outcome.user_message
+            });
         }
+        // Enviar correo de confirmación
+        const correoEnviado = await emailService.enviarConfirmacionPedido(pedido, { email });
 
-        res.json({ mensaje: "Pago realizado con éxito", pago: pagoData });
+        res.json({
+            mensaje: "Pago realizado con éxito",
+            pago: pagoData,
+            correo: correoEnviado
+        });
+
+        // Si no tiene `AUT0000`, se considera error
+        return res.status(400).json({ mensaje: "Error en el pago con Culqi", error: pagoData });
+
     } catch (error) {
         console.error("Error al procesar el pago:", error);
         res.status(500).json({ mensaje: "Error al procesar el pago", error: error.message });
     }
 };
-
 module.exports = { obtenerConfig, generarToken, procesarPago };

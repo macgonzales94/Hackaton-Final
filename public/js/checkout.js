@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
-    // Mostrar información del carrito
+    //información del carrito
     async function cargarDatosCarrito() {
         try {
             const respuesta = await fetch("http://localhost:5000/api/carrito", {
@@ -36,12 +36,12 @@ document.addEventListener("DOMContentLoaded", async function () {
                 }
             });
             const carrito = await respuesta.json();
-            
+
             document.getElementById("carritoId").textContent = carrito._id || "No disponible";
             document.getElementById("subtotal").textContent = `S/. ${carrito.total.toFixed(2)}`;
             document.getElementById("envio").textContent = `S/. ${carrito.envio || 10}`;
             document.getElementById("total").textContent = `S/. ${(carrito.total + (carrito.envio || 10)).toFixed(2)}`;
-            
+
         } catch (error) {
             console.error("Error al cargar datos del carrito:", error);
         }
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const fechaVencimiento = document.getElementById("fechaVencimiento").value.split("/");
             const cvv = document.getElementById("cvv").value;
             const email = document.getElementById("email").value;
-            const monto = 100.00;
+
 
             // Generar Token de Tarjeta en el backend
             const tokenResponse = await fetch("http://localhost:5000/api/pagos/generar-token", {
@@ -75,6 +75,29 @@ document.addEventListener("DOMContentLoaded", async function () {
                 return;
             }
 
+            //carrito para el pedido
+            const carritoResponse = await fetch("http://localhost:5000/api/carrito", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+            });
+
+            const carrito = await carritoResponse.json();
+            if (!carrito || !carrito.total) {
+                alert("Error: No se pudo obtener el total del carrito.");
+                return;
+            }
+
+            const pedido = {
+                productos: carrito.productos,
+                total: carrito.total
+            };
+
+            // Definir el monto desde el pedido
+            const monto = carrito.total;
+
             // Procesar el pago en el backend
             const pagoResponse = await fetch("http://localhost:5000/api/pagos/procesar", {
                 method: "POST",
@@ -89,23 +112,47 @@ document.addEventListener("DOMContentLoaded", async function () {
                         distrito: document.getElementById("distrito").value,
                         codigoPostal: document.getElementById("codigoPostal").value,
                         telefono: document.getElementById("telefono").value
-                    }
+                    },
+                    pedido
                 })
             });
 
             const pagoData = await pagoResponse.json();
-            if (!pagoData.pago || pagoData.pago.status !== "paid") {
-                alert("Error en el pago");
+
+            // Si el pago tiene `AUT0000`, mostrar `Pop-up` y redirigir a compras
+            if (pagoData.pago?.outcome?.code === "AUT0000") {
+                mostrarPopUp(pagoData.user_message);
                 return;
             }
 
-            window.location.href = "confirmacion.html";
+            alert("Error en el pago");
         } catch (error) {
             console.error("Error al procesar el pago:", error);
         }
     }
 
-    btnPagar.addEventListener("click", procesarPago);
+    // Función para mostrar el `Pop-up`
+    function mostrarPopUp(mensaje) {
+        const popUp = document.createElement("div");
+        popUp.classList.add("popup-container");
+        popUp.innerHTML = `
+            <div class="popup">
+                <h2>¡Gracias por tu compra! 🎉</h2>
+                <p>${mensaje}</p>
+                <button onclick="redirigirCompras()">Ir a Productos</button>
+            </div>
+        `;
+        document.body.appendChild(popUp);
+    }
+
+    // Redirigir a compras después del mensaje
+    function redirigirCompras() {
+        window.location.href = "productos.html";
+    }
+
+    window.redirigirCompras = redirigirCompras
+    
+    document.getElementById("btnPagar").addEventListener("click", procesarPago);
     cargarDatosCarrito();
     cargarDatosUsuario();
 });
