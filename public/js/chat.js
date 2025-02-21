@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const socket = io("http://localhost:5000", { transports: ["websocket", "polling"] });
+    const API_URL = "https://hackaton-final-n7s2.onrender.com"; // URL del backend en Render
+    const socket = io(API_URL, { transports: ["websocket", "polling"] });
 
     const btnAbrirChat = document.getElementById("btnAbrirChat"); // Botón de abrir chat
     const contenedorChat = document.getElementById("contenedorChat"); // Contenedor del chat
