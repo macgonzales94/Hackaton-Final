@@ -1,3 +1,6 @@
+const API_URL = "https://hackaton-final-n7s2.onrender.com"; 
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const productosContainer = document.getElementById("productosContainer");
     const resumenSubtotal = document.getElementById("subtotal");
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function obtenerProductos() {
         try {
-            const respuesta = await fetch("http://localhost:5000/api/productos");
+            const respuesta = await fetch(`${API_URL}/api/productos`);
             const productos = await respuesta.json();
             console.log("Productos obtenidos:", productos);
             mostrarProductos(productos);
@@ -102,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const password = document.getElementById('loginPassword').value;
         
         try {
-            const respuesta = await fetch("http://localhost:5000/api/auth/login", {
+            const respuesta = await fetch(`${API_URL}/api/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password })
@@ -127,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         
         try {
-            const respuesta = await fetch("http://localhost:5000/api/auth/registro", {
+            const respuesta = await fetch(`${API_URL}/api/auth/registro`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData)
@@ -144,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function enviarCarritoAlServidor() {
         try {
-            await fetch("http://localhost:5000/api/carrito/sincronizar", {
+            await fetch(`${API_URL}/api/carrito/sincroniza`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -161,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function procesarPago() {
         try {
-            const respuesta = await fetch("http://localhost:5000/api/carrito", {
+            const respuesta = await fetch(`${API_URL}/api/carrito/`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -179,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const nuevoPedido = await fetch("http://localhost:5000/api/pedidos/crear", {
+            const nuevoPedido = await fetch(`${API_URL}/api/pedidos/crear`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
