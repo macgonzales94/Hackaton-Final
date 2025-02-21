@@ -54,8 +54,8 @@ io.on("connection", (socket) => {
 
 // Definir puerto y escuchar
 const PORT = process.env.PORT || 5000;
-const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+const HOST = '0.0.0.0';
 
 server.listen(PORT, HOST, () => {
-    console.log(`Servidor corriendo en puerto ${PORT}`);
+    console.log(`Servidor corriendo en http://${HOST}:${PORT}`);
 });
