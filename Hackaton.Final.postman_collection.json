@@ -1,0 +1,830 @@
+{
+	"info": {
+		"_postman_id": "cc564c99-adcb-4c8f-b5f2-9b2ee299b95a",
+		"name": "Hackaton.Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11121777"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Administrador\",\r\n    \"email\": \"angel@cliente.com\",\r\n    \"password\": \"cliente\",\r\n    \"telefono\": \"999999999\",\r\n    \"direccion\": {\r\n        \"calle\": \"Av. Principal\",\r\n        \"ciudad\": \"Lima\",\r\n        \"distrito\": \"Miraflores\",\r\n        \"codigoPostal\": \"15074\"\r\n    },\r\n    \"rol\": \"cliente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/auth/registro",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"registro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "perfil",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjczZjZmNjFlOWRjNTc5ZGM3ZmViZSIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImNsaWVudGVAY2xpZW50ZS5jb20iLCJyb2wiOiJjbGllbnRlIiwiaWF0IjoxNzQwMDYyNjQzLCJleHAiOjE3NDA2Njc0NDN9.RdJPt6aFOvJhoSWQzFQQ9WBIrEgmL3M1zEMG_q6vmgU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cliente@cliente.com\",\r\n    \"password\": \"cliente\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/auth/perfil",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"perfil"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "crear producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMDk3NTgzLCJleHAiOjE3NDA3MDIzODN9.A-JQk9sMaYjsoHVI_ovoSopqhVD0OMW6DzxpzNUj5VM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Shampoo Ondulado\",\r\n    \"marca\": \"EcoHair\",\r\n    \"descripcion\": \"Shampoo sin sulfatos para todo tipo de cabello.\",\r\n    \"precio\": 25.99,\r\n    \"categoria\": \"Cuidado del Cabello\",\r\n    \"stock\": 50,\r\n    \"imagenes\": [\r\n        {\r\n            \"url\": \"https://ejemplo.com/imagen.jpg\",\r\n            \"public_id\": \"img123\"\r\n        }\r\n    ],\r\n    \"caracteristicas\": [\r\n        {\r\n            \"nombre\": \"Tipo\",\r\n            \"valor\": \"Sin sulfatos\"\r\n        }\r\n    ],\r\n    \"activo\": true,\r\n    \"destacado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/productos",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"productos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener por ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMDk3NTgzLCJleHAiOjE3NDA3MDIzODN9.A-JQk9sMaYjsoHVI_ovoSopqhVD0OMW6DzxpzNUj5VM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Shampoo Ondulado\",\r\n    \"marca\": \"EcoHair\",\r\n    \"descripcion\": \"Shampoo sin sulfatos para todo tipo de cabello.\",\r\n    \"precio\": 25.99,\r\n    \"categoria\": \"Cuidado del Cabello\",\r\n    \"stock\": 50,\r\n    \"imagenes\": [\r\n        {\r\n            \"url\": \"https://ejemplo.com/imagen.jpg\",\r\n            \"public_id\": \"img123\"\r\n        }\r\n    ],\r\n    \"caracteristicas\": [\r\n        {\r\n            \"nombre\": \"Tipo\",\r\n            \"valor\": \"Sin sulfatos\"\r\n        }\r\n    ],\r\n    \"activo\": true,\r\n    \"destacado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/productos/67b7c850d4af01d6fa22f17a",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"productos",
+								"67b7c850d4af01d6fa22f17a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener todos los productos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMDk3NTgzLCJleHAiOjE3NDA3MDIzODN9.A-JQk9sMaYjsoHVI_ovoSopqhVD0OMW6DzxpzNUj5VM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/producto/",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMDk3NTgzLCJleHAiOjE3NDA3MDIzODN9.A-JQk9sMaYjsoHVI_ovoSopqhVD0OMW6DzxpzNUj5VM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Shampoo Ondulado\",\r\n    \"marca\": \"EcoHair\",\r\n    \"descripcion\": \"Shampoo sin sulfatos para todo tipo de cabello.\",\r\n    \"precio\": 25.99,\r\n    \"categoria\": \"Cuidado del Cabello\",\r\n    \"stock\": 50,\r\n    \"imagenes\": [\r\n        {\r\n            \"url\": \"https://ejemplo.com/imagen.jpg\",\r\n            \"public_id\": \"img123\"\r\n        }\r\n    ],\r\n    \"caracteristicas\": [\r\n        {\r\n            \"nombre\": \"Tipo\",\r\n            \"valor\": \"Sin sulfatos\"\r\n        }\r\n    ],\r\n    \"activo\": true,\r\n    \"destacado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/producto/actualizar/67b7c850d4af01d6fa22f17a",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"producto",
+								"actualizar",
+								"67b7c850d4af01d6fa22f17a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pago",
+			"item": [
+				{
+					"name": "obtener token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "pk_test_89a1417406ce7fa2",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ // Para generar un token con Culqi\r\n    \"card_number\": \"4111111111111111\",\r\n    \"cvv\": \"123\",\r\n    \"expiration_month\": \"09\",\r\n    \"expiration_year\": \"29\",\r\n    \"email\": \"cliente@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pagos/generar-token",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pagos",
+								"generar-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "procesar pago",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "sk_test_SWyklAB8rIyjXmje",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\": \"TOKEN_GENERADO\",\r\n  \"email\": \"correo@example.com\",\r\n  \"monto\": 100.50,\r\n  \"direccionEnvio\": {\r\n    \"calle\": \"Av. Principal\",\r\n    \"ciudad\": \"Lima\",\r\n    \"distrito\": \"Miraflores\",\r\n    \"codigoPostal\": \"15074\"\r\n  },\r\n  \"pedido\": {\r\n    \"productos\": [\r\n      { \"producto\": \"ID_PRODUCTO\", \"cantidad\": 1 }\r\n    ]\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pagos/procesar",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pagos",
+								"procesar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "agregar carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productoId\": \"67b530b30ba6d5e079af1aa5\",\r\n    \"cantidad\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/carrito/agregar",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"carrito",
+								"agregar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/carrito",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"carrito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/carrito/eliminar/67b7e25a605f142987202b86",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"carrito",
+								"eliminar",
+								"67b7e25a605f142987202b86"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "vaciar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/carrito/vaciar",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"carrito",
+								"vaciar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedido",
+			"item": [
+				{
+					"name": "crear pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"direccionEnvio\": {\r\n        \"calle\": \"Av. Primavera\",\r\n        \"ciudad\": \"Lima\",\r\n        \"distrito\": \"Surco\",\r\n        \"codigoPostal\": \"15039\",\r\n        \"telefono\": \"987654321\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedidos/crear",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pedidos",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener pedido",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedido/usuario",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pedido",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "todos pedidos (ADMIN)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMTA0NDc2LCJleHAiOjE3NDA3MDkyNzZ9.4ppDJDu5i0Khb8JN8AhW1mJF06jAzv8sxww7vN9SgA8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedido/usuario",
+							"protocol": "https",
+							"host": [
+								"hackaton-final-n7s2",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pedido",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar pedido (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMTA0OTkyLCJleHAiOjE3NDA3MDk3OTJ9.PV4LJaNPF1HMIdH4Y7Nfqw0NEVFf0lB_9GikZe19aTg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"estado\": \"entregado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackotan-final.onrender.com/api/pedidos/67b7974dc08ae01bc4ebda66",
+							"protocol": "https",
+							"host": [
+								"hackotan-final",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pedidos",
+								"67b7974dc08ae01bc4ebda66"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzM5OTI4ODYyLCJleHAiOjE3NDA1MzM2NjJ9.p9Ap9WjFMnwn38w-xgcuLE0W0iakSvqfhChky5Qtd_M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"estado\": \"entregado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackotan-final.onrender.com/api/pedido/actualizar-estado/67b7974dc08ae01bc4ebda66",
+							"protocol": "https",
+							"host": [
+								"hackotan-final",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"pedido",
+								"actualizar-estado",
+								"67b7974dc08ae01bc4ebda66"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chat",
+			"item": [
+				{
+					"name": "historial de chat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackotan-final.onrender.com/api/chat",
+							"protocol": "https",
+							"host": [
+								"hackotan-final",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"chat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "historial de chat Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuario\": \"Juan\",\r\n  \"mensaje\": \"Hola, ¿cómo estás?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hackotan-final.onrender.com/api/chat",
+							"protocol": "https",
+							"host": [
+								"hackotan-final",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"api",
+								"chat"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "obtener por ID Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMDk3NTgzLCJleHAiOjE3NDA3MDIzODN9.A-JQk9sMaYjsoHVI_ovoSopqhVD0OMW6DzxpzNUj5VM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://hackotan-final.onrender.com/api/eliminar/67b7c850d4af01d6fa22f17a",
+					"protocol": "https",
+					"host": [
+						"hackotan-final",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"eliminar",
+						"67b7c850d4af01d6fa22f17a"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
