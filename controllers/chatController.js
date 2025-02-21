@@ -1,10 +1,10 @@
-const Chat = require("../models/Chat");
+const chat = require("../models/chat");
 
 const chatController = {
     // Obtener historial de chat
     obtenerMensajes: async (req, res) => {
         try {
-            const mensajes = await Chat.find().sort({ fecha: 1 });
+            const mensajes = await chat.find().sort({ fecha: 1 });
             res.json(mensajes);
         } catch (error) {
             res.status(500).json({ mensaje: "Error al obtener mensajes", error: error.message });
@@ -15,7 +15,7 @@ const chatController = {
     guardarMensaje: async (req, res) => {
         try {
             const { usuario, mensaje } = req.body;
-            const nuevoMensaje = new Chat({ usuario, mensaje });
+            const nuevoMensaje = new chat({ usuario, mensaje });
             await nuevoMensaje.save();
             res.json({ mensaje: "Mensaje guardado correctamente" });
         } catch (error) {
