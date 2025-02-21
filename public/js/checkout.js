@@ -1,10 +1,12 @@
+const API_URL = "https://hackaton-final-n7s2.onrender.com"; 
+
 document.addEventListener("DOMContentLoaded", async function () {
     const btnPagar = document.getElementById("btnPagar");
 
     // Autocompletar datos del usuario
     async function cargarDatosUsuario() {
         try {
-            const respuesta = await fetch("http://localhost:5000/api/usuarios/perfil", {
+            const respuesta = await fetch(`${API_URL}/api/usuarios/perfil`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     //información del carrito
     async function cargarDatosCarrito() {
         try {
-            const respuesta = await fetch("http://localhost:5000/api/carrito", {
+            const respuesta = await fetch(`${API_URL}/api/carrito`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -57,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
             // Generar Token de Tarjeta en el backend
-            const tokenResponse = await fetch("http://localhost:5000/api/pagos/generar-token", {
+            const tokenResponse = await fetch(`${API_URL}/api/pagos/generar-token`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             //carrito para el pedido
-            const carritoResponse = await fetch("http://localhost:5000/api/carrito", {
+            const carritoResponse = await fetch(`${API_URL}/api/carrito`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const monto = carrito.total;
 
             // Procesar el pago en el backend
-            const pagoResponse = await fetch("http://localhost:5000/api/pagos/procesar", {
+            const pagoResponse = await fetch(`${API_URL}/api/pagos/procesar`  , {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
