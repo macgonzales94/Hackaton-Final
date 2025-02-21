@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     async function enviarCarritoAlServidor() {
         try {
-            await fetch(`${API_URL}/api/carrito/sincroniza`, {
+            await fetch(`${API_URL}/api/carrito/sincronizar`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
