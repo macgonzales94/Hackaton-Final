@@ -220,7 +220,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://hackaton-final-n7s2.onrender.com/api/producto/",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/productos/",
 							"protocol": "https",
 							"host": [
 								"hackaton-final-n7s2",
@@ -229,7 +229,7 @@
 							],
 							"path": [
 								"api",
-								"producto",
+								"productos",
 								""
 							]
 						}
@@ -253,7 +253,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"Shampoo Ondulado\",\r\n    \"marca\": \"EcoHair\",\r\n    \"descripcion\": \"Shampoo sin sulfatos para todo tipo de cabello.\",\r\n    \"precio\": 25.99,\r\n    \"categoria\": \"Cuidado del Cabello\",\r\n    \"stock\": 50,\r\n    \"imagenes\": [\r\n        {\r\n            \"url\": \"https://ejemplo.com/imagen.jpg\",\r\n            \"public_id\": \"img123\"\r\n        }\r\n    ],\r\n    \"caracteristicas\": [\r\n        {\r\n            \"nombre\": \"Tipo\",\r\n            \"valor\": \"Sin sulfatos\"\r\n        }\r\n    ],\r\n    \"activo\": true,\r\n    \"destacado\": true\r\n}",
+							"raw": "    {\r\n\r\n        \"nombre\": \"Shampoo Actualizar\",\r\n        \"marca\": \"EcoHair\"\r\n        \r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -261,7 +261,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://hackaton-final-n7s2.onrender.com/api/producto/actualizar/67b7c850d4af01d6fa22f17a",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/productos/actualizar/67b592208b2a86fb24aff135",
 							"protocol": "https",
 							"host": [
 								"hackaton-final-n7s2",
@@ -270,9 +270,9 @@
 							],
 							"path": [
 								"api",
-								"producto",
+								"productos",
 								"actualizar",
-								"67b7c850d4af01d6fa22f17a"
+								"67b592208b2a86fb24aff135"
 							]
 						}
 					},
@@ -555,9 +555,6 @@
 				},
 				{
 					"name": "obtener pedido",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -571,17 +568,8 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedido/usuario",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedidos/mis-pedidos",
 							"protocol": "https",
 							"host": [
 								"hackaton-final-n7s2",
@@ -590,8 +578,8 @@
 							],
 							"path": [
 								"api",
-								"pedido",
-								"usuario"
+								"pedidos",
+								"mis-pedidos"
 							]
 						}
 					},
@@ -599,9 +587,6 @@
 				},
 				{
 					"name": "todos pedidos (ADMIN)",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -615,17 +600,8 @@
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedido/usuario",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedidos",
 							"protocol": "https",
 							"host": [
 								"hackaton-final-n7s2",
@@ -634,8 +610,7 @@
 							],
 							"path": [
 								"api",
-								"pedido",
-								"usuario"
+								"pedidos"
 							]
 						}
 					},
@@ -666,17 +641,17 @@
 							}
 						},
 						"url": {
-							"raw": "https://hackotan-final.onrender.com/api/pedidos/67b7974dc08ae01bc4ebda66",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedidos/67b7e9800318cc1f2c51840f",
 							"protocol": "https",
 							"host": [
-								"hackotan-final",
+								"hackaton-final-n7s2",
 								"onrender",
 								"com"
 							],
 							"path": [
 								"api",
 								"pedidos",
-								"67b7974dc08ae01bc4ebda66"
+								"67b7e9800318cc1f2c51840f"
 							]
 						}
 					},
@@ -697,27 +672,17 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n{\r\n  \"estado\": \"entregado\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://hackotan-final.onrender.com/api/pedido/actualizar-estado/67b7974dc08ae01bc4ebda66",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/pedidos/67b7974dc08ae01bc4ebda66",
 							"protocol": "https",
 							"host": [
-								"hackotan-final",
+								"hackaton-final-n7s2",
 								"onrender",
 								"com"
 							],
 							"path": [
 								"api",
-								"pedido",
-								"actualizar-estado",
+								"pedidos",
 								"67b7974dc08ae01bc4ebda66"
 							]
 						}
@@ -747,10 +712,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://hackotan-final.onrender.com/api/chat",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/chat",
 							"protocol": "https",
 							"host": [
-								"hackotan-final",
+								"hackaton-final-n7s2",
 								"onrender",
 								"com"
 							],
@@ -777,10 +742,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://hackotan-final.onrender.com/api/chat",
+							"raw": "https://hackaton-final-n7s2.onrender.com/api/chat",
 							"protocol": "https",
 							"host": [
-								"hackotan-final",
+								"hackaton-final-n7s2",
 								"onrender",
 								"com"
 							],
@@ -793,38 +758,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "obtener por ID Copy",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YjUzMDA2MGJhNmQ1ZTA3OWFmMWFhMiIsIm5vbWJyZSI6IkFkbWluaXN0cmFkb3IiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbCI6ImFkbWluIiwiaWF0IjoxNzQwMDk3NTgzLCJleHAiOjE3NDA3MDIzODN9.A-JQk9sMaYjsoHVI_ovoSopqhVD0OMW6DzxpzNUj5VM",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://hackotan-final.onrender.com/api/eliminar/67b7c850d4af01d6fa22f17a",
-					"protocol": "https",
-					"host": [
-						"hackotan-final",
-						"onrender",
-						"com"
-					],
-					"path": [
-						"api",
-						"eliminar",
-						"67b7c850d4af01d6fa22f17a"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
