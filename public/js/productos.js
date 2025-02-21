@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         } catch (error) {
             console.error("Error en registro:", error);
+            console.error("Error en registro:", error);
         }
     });
 
